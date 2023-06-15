@@ -13,3 +13,10 @@ readVect = do s <- getLine
                 else do (k ** ss) <- readVect 
                         pure ((S k) ** s::ss)  -- pure (_ ** s::ss) would work as well
 
+zipInputs : IO ()
+zipInputs = do (l1 ** v1) <- readVect
+               (l2 ** v2) <- readVect
+               case exactLength l1 v2 of
+                Nothing => putStrLn ("Error")
+                (Just x) => printLn (zip v1 x)
+
